@@ -24,7 +24,7 @@ below is the process for both cases, how to call this script to perform the task
 
 ## ROTATE MYSQL USER AND UPDATE THE SECRET MANAGER
 
-If we know the secret manager details which needs to be updated, we no need to pass the **database password** manually,
+If we know the secret manager details which needs to be updated, we no need to pass the **user password** manually,
 it will fetch the old user password (from secret manager) and will create the password automatically as per old one format:
     
 Below are the different arguments which needs to be passed to rotate the user in mySQL and secret manager updation.
@@ -39,9 +39,28 @@ Below are the different arguments which needs to be passed to rotate the user in
 
 **password_keys**   : these are the keys as **mysql user password** in SECRET MANAGER which are being used in different applications with different keys names, so as soon as the new user gets created in mysql the user password will automatically be udpated in Secret Manager as per respective of these keys name, **multiple** keyname can be passed at same time.
 
-**db_host**         : this is the database host where the mysql user has to be updated.
+**db_host**         : this is the database host where the database user password rotation will be done.
 
 **Example of calling the script with arguments**
 
-python mysql_user_pass_rotation.py --username='fsg_10' --old_user='shiva_1' --secret_manager='prod/any_secret_manager' --username_keys="db1_username, db2_username" --password_keys="db1_pass, db2_pass" --db_host='any_host'
+python mysql_user_pass_rotation.py --username='new_username' --old_user='existing_replaced_user' --secret_manager='prod/dummy_secret_manager' --username_keys="db1_username, db2_username" --password_keys="db1_pass, db2_pass" --db_host='any_host'
+
+
+## ROTATE MYSQL USER (not updating the secret manager)
+
+If we don't know the secret manager details which needs to be updated, we need to pass the **user password** manually
+
+Below are the different arguments which needs to be passed to rotate the user in mySQL.
+
+**username**        : this is the name of new user which will be created in mysql.
+
+**old_user**        : this is the existing user in mysql and new user will have the same permissions same as this user has.
+
+**password**        : password for new user to create in mysql.
+
+**db_host**         : this is the database host where the database user password rotation will be done.
+
+**Example of calling the script with arguments**
+
+python mysql_user_pass_rotation.py --username='new_username' --old_user='existing_replaced_user' --password='dummypassword' --db_host='any_host'
 
