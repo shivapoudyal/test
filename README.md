@@ -2,7 +2,9 @@
 
 **Overview**
 
-This db-password-rotation-script is the automated process of Rotating the mysql database users and also it will change the mysql user details in **Secret Manager** such **username** and **password** that is being used by any application or service .
+This db-password-rotation-script is the automated process of Rotating the mysql database users and also it will change the mysql user details in **Secret Manager** such **username** and **password** that is being used by any application or service.
+
+This script written in Python.
 
 **How this automation can expedite the db password rotation process**
 
@@ -20,7 +22,7 @@ This script works in 2 ways.
 below is the process for both cases, how to call this script to perform the task.
 
 
-## Process of running the script to ROTATE MYSQL USER WITH SECRET MANAGER UPDATIONS
+## ROTATE MYSQL USER AND UPDATE THE SECRET MANAGER
 
 If we know the secret manager details which needs to be updated, we no need to pass the **database password** manually,
 it will fetch the old user password (from secret manager) and will create the password automatically as per old one format:
@@ -38,3 +40,8 @@ Below are the different arguments which needs to be passed to rotate the user in
 **password_keys**   : these are the keys as **mysql user password** in SECRET MANAGER which are being used in different applications with different keys names, so as soon as the new user gets created in mysql the user password will automatically be udpated in Secret Manager as per respective of these keys name, **multiple** keyname can be passed at same time.
 
 **db_host**         : this is the database host where the mysql user has to be updated.
+
+**Example of calling the script with arguments**
+
+python mysql_user_pass_rotation.py --username='fsg_10' --old_user='shiva_1' --secret_manager='prod/any_secret_manager' --username_keys="db1_username, db2_username" --password_keys="db1_pass, db2_pass" --db_host='any_host'
+
