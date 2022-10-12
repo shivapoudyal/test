@@ -2,7 +2,7 @@
 
 **Overview**
 
-    This db-password-rotation-script is the automated process of Rotating the mysql database users and also it will change the mysql user details in **Secret Manager** such **username** and **password** .
+This db-password-rotation-script is the automated process of Rotating the mysql database users and also it will change the mysql user details in **Secret Manager** such **username** and **password** .
 
 **How this automation can expedite the db password rotation process**
 
