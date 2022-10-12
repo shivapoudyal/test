@@ -1,14 +1,16 @@
 # DB-password-rotation-script
 
+**Overview**
+
+    This db-password-rotation-script is the automated process of Rotating the mysql database users and also it will change the mysql user details in **Secret Manager** such **username** and **password** .
+
 **How this automation can expedite the db password rotation process**
 
     1. Now, we no need to login to MYSQL manually again and again to rotate the different users.
     2. We no need to sepretely hit the different commands such as for creating the new user, granting permissions as per other respective user.
-    2. We also no need to login manually to change the SECRET MANAGER mysql user details in AWS.
-    3. Just pass this script and it will perform the entire process, so that the db password rotation work can be expedite.
+    2. We also no need to login manually in AWS to change the SECRET MANAGER for mysql user details that is using by any application or service.
+    3. Just pass this script and it will perform the entire process automatically, so that the db password rotation work can be expedited.
 
-
-This db-password-rotation-script is the automated process of Rotating the mysql database users and also it will change the mysql user details in **Secret Manager** such **username** and **password** .
 
 This script works in 2 ways.
 
@@ -27,3 +29,4 @@ below is the process for both cases, how to pass this script to perform these ta
     - secret_manager  : this is the secret manager name where all the details are stored related to mysql user and are using in applications/services
 
     - username_keys   : this is the key name of secret manager for mysql
+
