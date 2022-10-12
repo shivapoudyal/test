@@ -15,5 +15,5 @@ below is the process for both cases, how to pass this script to perform these ta
 
     - username        : this is the name of new user which will be created in mysql.
     - old_user        : this is the existing user in mysql and new user will have the same permissions same as this user has.
-    - secret_manager  : this is the secret manager name where all the details are stored related to mysql user for application.
+    - secret_manager  : this is the secret manager name where all the details are stored related to mysql user and applications are calling the details through this secret manager.
 
