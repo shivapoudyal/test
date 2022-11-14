@@ -67,7 +67,7 @@ python mysql_user_pass_rotation.py --username='new_username' --old_user='existin
 
 
 
-
+Screenshot 2022-11-14 at 6.11.08 PM![image](https://user-images.githubusercontent.com/29144557/201663831-fc780fc4-13a3-4edb-9b27-2314779f0e05.png)
 
 
 
