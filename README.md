@@ -67,7 +67,7 @@ python mysql_user_pass_rotation.py --username='new_username' --old_user='existin
 
 
 
-[image](https://user-images.githubusercontent.com/29144557/201663831-fc780fc4-13a3-4edb-9b27-2314779f0e05.png)
+excel_dummy![image](https://user-images.githubusercontent.com/29144557/201900668-e199870d-9049-47f1-a74e-b0374f36e467.png)
 
 
 
