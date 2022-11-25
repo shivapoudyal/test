@@ -8,10 +8,13 @@ docker-compose -f infra-deploy-tf/docker-compose.yml run --rm terraform validate
 # Run the Application
 
 with IPs
+
 **ip:9000/employee_list/**
 
 with ALB
+
 **dns/employee_list/** (Runs on port 80 by def.)
+
 http://staging-gitlab-ci-cd-api-lb-624989431.us-east-1.elb.amazonaws.com/employee_list/ (eg)
 
 # How this gitlab runner works in resource deployment using terraform in AWS account
