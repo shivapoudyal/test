@@ -4,6 +4,7 @@
 whenever a new django application has be launched, we need to create 2 things:
 
 **(i)Django project** : it contains urls and settings
+
 **(ii)Django app**    : it contains views, models etc.
 
 setup django project:
