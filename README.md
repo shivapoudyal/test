@@ -26,8 +26,8 @@ after set up these project & app, your folder hierarchy looks this this:
 
 2) now, need to setup the html folder path so that view can read it and render from html folder
 
-Follow below steps to setup you html folder and make it renderable
-**myproject -> settings.py** : update this line:
-   in **TEMPLATES** method add **DIRS** : os.path.join(BASE_DIR, 'my_html')
+Follow below steps to setup your html folder and make it renderable
+**myproject -> settings.py** : update this line -> 
+   in **TEMPLATES** method update **DIRS** : os.path.join(BASE_DIR, 'my_html')
 
 Now, "my_html" folder is readable and it can be rendered. 
