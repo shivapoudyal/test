@@ -1,73 +1,17 @@
 
-# Validate & Check the Terraform Format before pushing to gitlab 
+## Create Django project:
 
-docker-compose -f infra-deploy-tf/docker-compose.yml run --rm terraform fmt
+whenever a new django application has be launched, we need to create 2 things:
 
-docker-compose -f infra-deploy-tf/docker-compose.yml run --rm terraform validate
+**(i)Django project** : it contains urls and settings
+**(ii)Django app**    : it contains views, models etc.
 
-# Run the Application
+setup django project:
+**python3 -m django startproject myproject**  # (this will create a parent folder "myproject" and seprate folder will also be created inside parent folder by name of "myproject")
 
-with IPs
-**ip:9000/employee_list/**
+setup django app:
+**python3 -m django startapp myapp**          # (make sure you've created this myapp inside parent folder of "myproject")
 
-with ALB
-**dns/employee_list/** (Runs on port 80 by def.)
+after set up these project & app, your folder hierarchy looks this this:
 
-http://staging-gitlab-ci-cd-api-lb-624989431.us-east-1.elb.amazonaws.com/employee_list/ (eg)
-
-# How this gitlab runner works in resource deployment using terraform in AWS account
-
-we are using terrform as docker container here, and gitlab needs to have some pre-set values, like -
-
-**db_pass, db_username, aws_access_key, aws_secret_key**
-
-in the term of aws account and resource deployment, whereas we are using a seprate IAM user for this resource deployment
-
-**ideal IAM user permission is minimal and only have access to specific resources eg permissions -> ec2-bastion-user-policy.json** 
-
-
-############################################################
-# Django - Run/Dockerized any application workflow
-############################################################
-
-1)  Create new start project if any not project exists
-      docker-compose run web django-admin startproject myproject (with docker)
-      django-admin startproject myproject (without docker)
-      
-2)  Create new app 
-      cd myproject  (go inside newly created project)
-      docker-compose run web django-admin startapp myapp (with docker)
-      django-admin startapp myapp (without docker)
-  
-  
-2)  Make Migrations (these steps are already defined inside docker-compose file, no need to follow below steps)
-      docker-compose run web python manage.py makemigrations
-  
-3)  Apply migrate changes
-      docker-compose run web python manage.py migrate
-
-4) start django app on local
-
-      pip install django
-      python3 manage.py runserver   (it will run by def on 8000 port)
-
-
-
-##################################################
-# Database - Adding Tables & Records
-##################################################
-
-# Login to bastion server and login to psql and perform this.
-
-# Creating Required table to run this application - set env value is as per environ.
-
-CREATE TABLE public.shiva_table(
-                id  	      SERIAL     PRIMARY KEY,
-                name          TEXT       NULL,
-                status        VARCHAR(50) NOT NULL,
-                env           VARCHAR(50) DEFAULT 'staging' NOT NULL,
-                created_at 	INTEGER DEFAULT date_part('epoch'::text, now())
-                );
-
-
-INSERT INTO public.shiva_table (name, status) values ('Alex', 'Active');  
+**myproject** (main folder) --> (i)myproject  (ii)myapp  (iii)manage.py
