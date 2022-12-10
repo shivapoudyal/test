@@ -92,10 +92,17 @@ needs to set below environment variables to fulfill the api req.
 
 
 export POSTGRES_DB="shiva_db"
+
 export POSTGRES_USER="shivapoudyal"
+
 export POSTGRES_PASSWORD="vshiva2020"
+
 export POSTGRES_HOST="localhost"
+
 export POSTGRES_PORT="5432"
+
 aws_access_key=xxxx
+
 aws_secret_access_key=xxxx
+
 s3_bucket_emp=xxxx
