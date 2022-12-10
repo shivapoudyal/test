@@ -91,6 +91,8 @@ needs to set below environment variables to fulfill the api req.
 8) s3_bucket_emp
 
 
+------------------- EG for env variables -------------------
+
 export POSTGRES_DB="shiva_db"
 
 export POSTGRES_USER="shivapoudyal"
