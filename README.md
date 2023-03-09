@@ -3,10 +3,16 @@
 **Overview**
 
 
-This automation script's main purpose is to **Create MySQL Users and add their credentails in AWS secrets manager automatically** and aim to reduce the manual work process and expedite the whole process in automated way.
+This automation script's main purpose is to **Create MySQL Users and add their credentails in AWS secrets manager automatically** and aim to reduce the manual work process and expedite the entire workflow in automated way.
 
 documentation link is [here](https://chegg.atlassian.net/l/cp/tW75HiJw)
 
+**What work will it be covering**:
+
+This automation will cover all the steps right from the creating the users in MySQL database to add credetials in AWS Secrets manager like :
+
+- Item 1
+- Item 2
 
 
 # Prerequisites python packages:
