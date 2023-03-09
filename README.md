@@ -11,90 +11,36 @@ documentation link is [here](https://chegg.atlassian.net/l/cp/tW75HiJw)
 
 This automation will cover all the various steps which currently being managed manually by SREs like :
 
-- Login to AWS RDS MySQL databases to Add the users (IAM Auth Token based login).
+- Connects and login to AWS RDS MySQL databases to Add the users (IAM Auth Token based login).
 - Generates password for mysql users.
 - Creates users in RDS MySQL databases.
 - Grants required MySQL permissions to the users.
 - Auto creates secrets manager keys and putting their values in AWS Secrets manager.
 
-Note:- whole automation script is written in Python programming language.
 
-# Prerequisites python packages:
+# How this Automation Script works and how to execute it:
+
+Note:- This Automation Script is written in Python programming language.
+
+**Prerequisites python packages to run the script**:
 
 pip install -r requirements.txt
 
-# How this automation connects AWS mysql DB:
+**How this automation connects AWS mysql DB:**
 
-it makes AWS mysql database connection as **Token based** authentication IAM login, for that, first the script checks if the server has RDS bundle file exists or not (to generate the token for login), if there is no RDS bundle exists in server **it will automatically download this file** and generates the token and makes the AWS mysql authentication & login. 
+it makes AWS mysql database connection as **Token based** authentication IAM login (with Okta auth AWS Profiles), for that, first the script checks if the server has RDS bundle file exists or not (to generate the token for login), if there is no RDS bundle exists in server **it will automatically download this file** and generates the token and makes the AWS mysql authentication & login. 
 
 (go through below documentation about token based login into mysql for more info.)
 
-doc link:- https://chegg.atlassian.net/wiki/spaces/CLDOPS/pages/386121/How+to+Login+using+RDS+IAM+Authentication 
+doc link:- https://chegg.atlassian.net/wiki/spaces/CLDOPS/pages/386121/How+to+Login+using+RDS+IAM+Authentication
 
+**How this script validates the different required steps in terms of creating MySQL users and adding the secrets in AWS Secrets Manager:**
 
-# HOW THIS AUTOMATION SCRIPT WORKS AND HOW TO EXECUTE THIS:
+while this script executing it validates the different checkpoints to ensure it create users in right way as following:
 
-If we know the secret manager details which needs to be updated, we no need to pass the **user password** manually,
-it will fetch the old user password (from secret manager) and will create the password automatically as per old one format.
-
-while updating the secret manager, first it will create a backup of existing secret manager by name **backup_srex/existing_secret_manager** and will update the existing one, so that in future if something goes bad, we can get it back from the backup secret manager.
+- define the config.json file details (into json format) - **eg given in "config.json.templates"
     
-Below are the different arguments which needs to be passed to rotate the user in mySQL and secret manager updation.
 
-**username**        : this is the name of new user which will be created in mysql.
-
-**old_user**        : this is the existing user in mysql and new user will have the same permissions same as this user has.
-
-**secret_manager**  : this is the secret manager name where all the details are stored related to mysql user and are using in applications/services
-
-**username_keys**   : these are the keys as **mysql username** in SECRET MANAGER which are being used in different applications with different keys names, so as soon as the new user gets created in mysql the username will automatically be udpated in Secret Manager as per respective of these keys name, **multiple** keyname can be passed at same time.
-
-**password_keys**   : these are the keys as **mysql user password** in SECRET MANAGER which are being used in different applications with different keys names, so as soon as the new user gets created in mysql the user password will automatically be udpated in Secret Manager as per respective of these keys name, **multiple** keyname can be passed at same time.
-
-**db_host**         : this is the database host where the database user password rotation will be done.
-
-**profile**         : this is the AWS Okta-user profile name that you have set up and wanted to work with.
-
-**lock_old_user** (optional)      : if you pass this argument, it will lock the old user account from database.
-
-**db_username** (optional)        : if need to pass the database username, it can be passed as arguments.
-
-**db_password** (optional)        : if need to pass the database password, it can be passed as arguments.
-
-
--- Example of calling the script with arguments **(without old user locking)** ----
-
-**python mysql_user_pass_rotation.py --username='new_username' --old_user='existing_mysql_user' --secret_manager='prod/dummy_secret_manager' --username_keys="db1_username, db2_username" --password_keys="db1_pass, db2_pass" --db_host='any_host' --profile='profile_name'**
-
-
--- Example of calling the script with arguments **(with old user locking)** --
-
-**python mysql_user_pass_rotation.py --username='new_username' --old_user='existing_mysql_user' --secret_manager='prod/dummy_secret_manager' --username_keys="db1_username, db2_username" --password_keys="db1_pass, db2_pass" --db_host='any_host' --profile='profile_name' --lock_old_user='yes'**
-
--- Example of calling the script with arguments **(pass the mysql db username & password)** --
-
-**python mysql_user_pass_rotation.py --username='new_username' --old_user='existing_mysql_user' --secret_manager='prod/dummy_secret_manager' --username_keys="db1_username, db2_username" --password_keys="db1_pass, db2_pass" --db_host='any_host' --profile='profile_name' --db_username='dummyuser' --db_password='dummypassword'**
-
-
-# ROTATE MYSQL DATABASE USER (not updating the secret manager):
-
-If we don't know the secret manager details which needs to be updated, we need to pass the **user password** manually
-
-Below are the different arguments which needs to be passed to rotate the user in mySQL.
-
-**username**        : this is the name of new user which will be created in mysql.
-
-**old_user**        : this is the existing user in mysql and new user will have the same permissions same as this user has.
-
-**password**        : password for new user to create in mysql.
-
-**db_host**         : this is the database host where the database user password rotation will be done.
-
-**profile**         : this is the AWS Okta-user profile name that you have set up and wanted to work with.
-
--- Example of calling the script with arguments --
-
-**python mysql_user_pass_rotation.py --username='new_username' --old_user='existing_mysql_user' --password='dummypassword' --db_host='any_host' --profile='profile_name'**
 
 
 # Lock any user in database:
