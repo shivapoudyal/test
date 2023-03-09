@@ -1,8 +1,13 @@
 # What this automation script is for and its processes:
 
+**Overview**
+
+
 This automation script's main purpose is to **Create MySQL Users and add their credentails in AWS secrets manager automatically** and aim to reduce the manual work process and expedite the whole process in automated way.
 
-[Stackoverflow The Key](https://stackoverflow.blog/2021/03/31/the-key-copy-paste/){:target="_blank" rel="noopener"}
+documentation link is [here](https://chegg.atlassian.net/l/cp/tW75HiJw)
+
+
 
 # Prerequisites python packages:
 
