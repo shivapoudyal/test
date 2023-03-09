@@ -9,11 +9,15 @@ documentation link is [here](https://chegg.atlassian.net/l/cp/tW75HiJw)
 
 **What work will it be covering**:
 
-This automation will cover all the steps right from the creating the users in MySQL database to add credetials in AWS Secrets manager like :
+This automation will cover all the various steps which currently being managed manually by SREs like :
 
-- Item 1
-- Item 2
+- Login to AWS RDS MySQL databases to Add the users (IAM Auth Token based login).
+- Generates password for mysql users.
+- Creates users in RDS MySQL databases.
+- Grants required MySQL permissions to the users.
+- Auto creates secrets manager keys and putting their values in AWS Secrets manager.
 
+Note:- whole automation script is written in Python programming language.
 
 # Prerequisites python packages:
 
@@ -28,31 +32,7 @@ it makes AWS mysql database connection as **Token based** authentication IAM log
 doc link:- https://chegg.atlassian.net/wiki/spaces/CLDOPS/pages/386121/How+to+Login+using+RDS+IAM+Authentication 
 
 
-# DB-password-rotation-script:
-
-**Overview**
-
-This db-password-rotation-script is the automated process of Rotating the mysql database users and also it will change the mysql user details in **Secret Manager** such **username** and **password** that is being used by any application or service.
-
-This script written in Python.
-
-**How this automation can expedite the db password rotation process**
-
-    1. Now, we no need to login to MYSQL manually again and again to rotate the different users.
-    2. We no need to sepretely hit the different commands such as for creating the new user, granting permissions as per other respective user.
-    2. We also no need to login manually in AWS to change the SECRET MANAGER for mysql user details that is being used by any application or service.
-    3. Just pass this script and it will perform the entire process automatically, so that the db password rotation work can be expedited.
-
-
-This script works in 2 ways.
-
-    - 1st case is, if you have to rotate the user in Mysql and Update the Secret Manager as well.
-    - 2nd case is, if you have to rotate the user in Mysql only and don't want to update the secret manager.
-
-below is the process for both cases, how to call this script to perform the task.
-
-
-# ROTATE MYSQL DATABASE USER AND UPDATE THE SECRET MANAGER:
+# HOW THIS AUTOMATION SCRIPT WORKS AND HOW TO EXECUTE THIS:
 
 If we know the secret manager details which needs to be updated, we no need to pass the **user password** manually,
 it will fetch the old user password (from secret manager) and will create the password automatically as per old one format.
