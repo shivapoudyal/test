@@ -1,8 +1,8 @@
-# What this automation script can do in db password rotation process:
+# What this automation script is for and its processes:
 
-1) db password rotation & secret manager user updation
-2) lock the user in database       (if needed call the script separately)
-3) delete the user from database   (if needed call the script separately)
+This automation script's main purpose is to **Create MySQL Users and add their credentails in AWS secrets manager automatically** and aim to reduce the manual work process and expedite the whole process in automated way.
+
+documentation link is [here](https://chegg.atlassian.net/l/cp/tW75HiJw)
 
 # Prerequisites python packages:
 
