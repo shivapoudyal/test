@@ -2,8 +2,11 @@
 
 ## Introduction 
 In this project, you will execute an End-To-End Data Engineering Project on Real-Time Stock Market Data using Kafka.
-
 We are going to use different technologies such as Python, Amazon Web Services (AWS), Apache Kafka, Glue, Athena, and SQL.
+
+We will be rendering stock market data from csv file (data/stock_data.csv) as it contains lots of data and we are mainly interested to understand about kafka end-to-end use cases here.
+
+**Note:** apache-kafka should be installed and running before performing this project (either of cloud or on local).
 
 ## Architecture 
 <img src="Architecture.jpg">
@@ -11,12 +14,12 @@ We are going to use different technologies such as Python, Amazon Web Services (
 ## Technology Used
 - Programming Language - Python
 - Amazon Web Service (AWS)
-1. S3 (Simple Storage Service)
-2. Athena
-3. Glue Crawler
-4. Glue Catalog
-5. EC2
-- Apache Kafka
+
+1. **S3 (Simple Storage Service)**
+2. **Athena**: it will read the S3 source data from json file (for this project), and we can read the data using sql queries here.
+3. **Glue Crawler**: it will fetch the data from S3 as source and create table definitions and pass to the "Glue Catalog".
+4. **Glue Catalog**: it is the kind of persitent storage of any glue metadata.
+5. **EC2 / Local**: Apache Kafka should be installed here.
 
 
 ## Dataset Used
