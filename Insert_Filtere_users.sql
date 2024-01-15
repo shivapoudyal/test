@@ -1,4 +1,4 @@
-insert into ea_profile_dms (email,created_at) values 
+insert into expert_admin.ea_profile_dms (email,created_date) values 
 ('daisy_16a@yahoo.com','2023-08-04T10:35:40.801Z'),
 ('ncarper43@icloud.com','2023-11-22T06:20:41.641Z'),
 ('rbdprofessional@gmail.com','2023-08-04T11:42:49.015Z'),
